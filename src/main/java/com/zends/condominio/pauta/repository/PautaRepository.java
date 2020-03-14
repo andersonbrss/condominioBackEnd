@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.zends.condominio.pauta.domains.Pauta;
 
 @Repository
-public interface IPautaRepository extends JpaRepository< Pauta, Long > {
+public interface PautaRepository extends JpaRepository< Pauta, Long > {
 
 }

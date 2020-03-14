@@ -8,21 +8,28 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Pauta implements Serializable {
 	private static final long serialVersionUID = -6660916862753191168L;
 
 	@Id
-	@GeneratedValue( strategy = GenerationType.IDENTITY )
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column( length = 200 )
+
+	@Column(length = 100)
+	@NotNull(message = "O campo local deve ser informado")
+	@Size(min = 5, max = 100, message = "O campo deve ter no minimo 5 caracteres e no maximo 100 caracteres")
 	private String local;
-	
-	@Column( length = 100 )
+
+	@NotNull(message = "O campo assuntos deve ser informado")
+	@Size(min = 5, max = 100, message = "O campo deve ter no minimo 5 caracteres e no maximo 250 caracteres")
+	@Column(length = 100)
 	private String assunto;
-	
+
+	@NotNull(message = "O campo data deve ser informado")
 	@Column
 	private LocalDateTime data;
 
@@ -57,5 +64,5 @@ public class Pauta implements Serializable {
 	public void setData(LocalDateTime data) {
 		this.data = data;
 	}
-	
+
 }

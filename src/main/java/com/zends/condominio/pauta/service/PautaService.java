@@ -9,61 +9,69 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.zends.condominio.comum.exception.DataException;
+import com.zends.condominio.comum.exception.ObjectNotFoundException;
 import com.zends.condominio.comum.service.AbstractService;
 import com.zends.condominio.pauta.domains.Pauta;
-import com.zends.condominio.pauta.repository.IPautaRepository;
+import com.zends.condominio.pauta.repository.PautaRepository;
 
 @Service
-public class PautaService implements AbstractService< Pauta > {
+public class PautaService implements AbstractService<Pauta> {
 
 	@Autowired
-	private IPautaRepository dao;
-	
+	private PautaRepository dao;
+
 	@Override
 	public ResponseEntity<Pauta> getObj(Long idPauta) {
-		Optional< Pauta > pauta = dao.findById( idPauta );
-		if( !pauta.isPresent() ) {
-			return new ResponseEntity< Pauta >( HttpStatus.NOT_FOUND );
+		Optional<Pauta> pauta = dao.findById(idPauta);
+		if (!pauta.isPresent()) {
+			throw new ObjectNotFoundException("Nao foi possivel realizar a busca da pauta com id informado: " + idPauta
+					+ " " + Pauta.class.getName());
 		}
-		
-		return new ResponseEntity< Pauta >( pauta.get(), HttpStatus.OK);
+		return new ResponseEntity<Pauta>(pauta.get(), HttpStatus.OK);
 	}
 
 	@Override
 	public ResponseEntity<List<Pauta>> getList() {
-		List< Pauta > listaPauta = dao.findAll();
-		if( listaPauta.isEmpty() ) {
-			return new ResponseEntity< List< Pauta >> ( HttpStatus.NOT_FOUND );			
+		List<Pauta> listaPauta = dao.findAll();
+		if (listaPauta.isEmpty()) {
+			throw new ObjectNotFoundException("A lista de Pauta esta vazia " + Pauta.class.getName());
 		}
-		
-		return new ResponseEntity< List< Pauta >> ( listaPauta, HttpStatus.OK );
+
+		return new ResponseEntity<List<Pauta>>(listaPauta, HttpStatus.OK);
 	}
 
 	@Override
 	@Transactional
 	public ResponseEntity<Pauta> save(Pauta pauta) {
-		pauta = dao.save( pauta );
-		if( pauta.getId() == null ) {
-			return new ResponseEntity<>( HttpStatus.NOT_FOUND );			
+		pauta = dao.save(pauta);
+		if (pauta.getId() == null) {
+			throw new DataException("Nao foi possivel realizar o cadastro de uma pauta" + Pauta.class.getName());
 		}
 		
-		return new ResponseEntity< Pauta > ( pauta, HttpStatus.OK ) ;
+		return new ResponseEntity<Pauta>(pauta, HttpStatus.OK);
 	}
 
 	@Override
 	@Transactional
 	public ResponseEntity<Pauta> update(Pauta pauta) {
-		pauta = dao.save( pauta );
-		
-		return new ResponseEntity< Pauta > ( pauta, HttpStatus.OK );
+		if (pauta.getId() == null) {
+			throw new ObjectNotFoundException("Nao foi possivel atualizar a pauta com ID informado" + pauta.getId()
+					+ " " + Pauta.class.getName());
+		}
+		getObj(pauta.getId());
+		pauta = dao.save(pauta);
+		return new ResponseEntity<Pauta>(pauta, HttpStatus.OK);
+
 	}
 
 	@Override
 	@Transactional
 	public ResponseEntity<String> delete(Long idDominio) {
-		dao.deleteById( idDominio );
-		
-		return ResponseEntity.ok().body( "Registro excluido com sucesso." );
+		getObj(idDominio);
+		dao.deleteById(idDominio);
+		return ResponseEntity.ok().body("Registro excluido com sucesso.");
+
 	}
 
 }

@@ -25,35 +25,35 @@ public class PautaResource {
 
 	@Autowired
 	private AbstractService<Pauta> service;
-	
+
 	@GetMapping
-	private ResponseEntity< List< Pauta>> getList() {
-		Log.info("Realiza a busca de todas as Pautas");
+	private ResponseEntity<List<Pauta>> getList() {
+		Log.info("Realiza a busca de todas as Pautas");		
 		return service.getList();
 	}
-	
+
 	@GetMapping("/{id}")
-	private ResponseEntity< ? > getPauta( @PathVariable("id") Long idDominio ) {
+	private ResponseEntity<?> getPauta(@PathVariable("id") Long idDominio) {
 		Log.info("Realiza a busca de uma Pauta recebida via ID");
-		return service.getObj( idDominio );
+		return service.getObj(idDominio);
 	}
-	
+
 	@PostMapping
-	private ResponseEntity< ? > save( @RequestBody Pauta pauta) {
+	private ResponseEntity<?> save(@RequestBody Pauta pauta) {
 		Log.info("Realiza o cadastro de uma nova Pauta");
-		return service.save( pauta );
+		return service.save(pauta);
 	}
-	
+
 	@PutMapping
-	private ResponseEntity< ? > update( @RequestBody Pauta pauta) {
+	private ResponseEntity<?> update(@RequestBody Pauta pauta) {
 		Log.info("Realiza a atualizacao de uma nova Pauta");
-		return service.update( pauta );
+		return service.update(pauta);
 	}
-	
+
 	@DeleteMapping("/{id}")
-	private ResponseEntity< String > delete( @PathVariable("id") Long idPauta ) {
+	private ResponseEntity<String> delete(@PathVariable("id") Long idPauta) {
 		Log.info("Realiza a exclusao de uma nova Pauta");
-		return service.delete( idPauta );
+		return service.delete(idPauta);
 	}
-	
+
 }
