@@ -35,7 +35,7 @@ public class PautaService implements AbstractService<Pauta> {
 	public ResponseEntity<List<Pauta>> getList() {
 		List<Pauta> listaPauta = dao.findAll();
 		if (listaPauta.isEmpty()) {
-			throw new ObjectNotFoundException("A lista de Pauta esta vazia " + Pauta.class.getName());
+			throw new ObjectNotFoundException("A lista de Pauta esta vazia ");
 		}
 
 		return new ResponseEntity<List<Pauta>>(listaPauta, HttpStatus.OK);
@@ -70,7 +70,7 @@ public class PautaService implements AbstractService<Pauta> {
 	public ResponseEntity<String> delete(Long idDominio) {
 		getObj(idDominio);
 		dao.deleteById(idDominio);
-		return ResponseEntity.ok().body("Registro excluido com sucesso.");
+		return ResponseEntity.noContent().build();
 
 	}
 

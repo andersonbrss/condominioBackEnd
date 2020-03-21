@@ -2,6 +2,7 @@ package com.zends.condominio.comum.exception;
 
 public class StandardError {
 	
+	@SuppressWarnings("unused")
 	private static final long serialVersionUID = -6660916862753191168L;
 	
 	private Long timestamp;

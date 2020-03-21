@@ -4,6 +4,7 @@ import java.util.List;
 
 public class ValidationError extends StandardError{
 	
+	@SuppressWarnings("unused")
 	private static final long serialVersionUID = -6660916862753191168L;
 
 	private List<FieldMessage> errors = new ArrayList<>();
