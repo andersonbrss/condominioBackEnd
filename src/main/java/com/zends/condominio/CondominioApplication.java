@@ -18,7 +18,6 @@ public class CondominioApplication extends SpringBootServletInitializer {
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(CondominioApplication.class);
 	}
-
 }
 
 @RestController

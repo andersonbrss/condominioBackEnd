@@ -16,7 +16,7 @@ import com.zends.condominio.pauta.domains.Pauta;
 import com.zends.condominio.pauta.repository.PautaRepository;
 
 @Service
-public class PautaService implements PautaServiceImp<Pauta>  {
+public class PautaService implements PautaServiceImp<Pauta> {
 
 	@Autowired
 	private PautaRepository dao;
@@ -30,23 +30,21 @@ public class PautaService implements PautaServiceImp<Pauta>  {
 		}
 		return new ResponseEntity<Pauta>(pauta.get(), HttpStatus.OK);
 	}
+
 	@Override
-	@Transactional
-	public ResponseEntity<List<Pauta>> buscarPautaData(LocalDate dataInicio, LocalDate dataFim){
-					
-		if(dataInicio.isAfter(dataFim)) {
+	public ResponseEntity<List<Pauta>> buscarPautaData(LocalDate dataInicio, LocalDate dataFim) {
+		if (dataInicio.isAfter(dataFim)) {
 			throw new ObjectNotFoundException("A data inicio nao pode ser maior que a data fim");
-			
-		} else if(dataFim.isBefore(dataInicio)) {
+
+		} else if (dataFim.isBefore(dataInicio)) {
 			throw new ObjectNotFoundException("A data fim nao pode ser menor que a data inicio");
 		}
-		
-		List<Pauta> listaPauta = dao.buscaPorData(dataInicio, dataFim);
+		List<Pauta> listaPauta = dao.findByDataBetween(dataInicio, dataFim);
 		if (listaPauta.isEmpty()) {
 			throw new ObjectNotFoundException("Nao foi encontrado nenhum registro com as data informadas");
-		}		
-		
-		return new ResponseEntity<List<Pauta>>(listaPauta, HttpStatus.OK);		
+		}
+
+		return new ResponseEntity<List<Pauta>>(listaPauta, HttpStatus.OK);
 	}
 
 	@Override
@@ -66,7 +64,7 @@ public class PautaService implements PautaServiceImp<Pauta>  {
 		if (pauta.getId() == null) {
 			throw new DataException("Nao foi possivel realizar o cadastro de uma pauta" + Pauta.class.getName());
 		}
-		
+
 		return new ResponseEntity<Pauta>(pauta, HttpStatus.OK);
 	}
 
@@ -90,6 +88,5 @@ public class PautaService implements PautaServiceImp<Pauta>  {
 		dao.deleteById(idDominio);
 		return ResponseEntity.noContent().build();
 	}
-	
 
 }
