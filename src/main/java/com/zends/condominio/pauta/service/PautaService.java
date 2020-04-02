@@ -39,7 +39,7 @@ public class PautaService implements PautaServiceImp<Pauta> {
 		} else if (dataFim.isBefore(dataInicio)) {
 			throw new ObjectNotFoundException("A data fim nao pode ser menor que a data inicio");
 		}
-		List<Pauta> listaPauta = dao.findByDataBetween(dataInicio, dataFim);
+		List<Pauta> listaPauta = dao.findByDataBetweenOrderByIdDesc(dataInicio, dataFim);
 		if (listaPauta.isEmpty()) {
 			throw new ObjectNotFoundException("Nao foi encontrado nenhum registro com as data informadas");
 		}
@@ -49,7 +49,7 @@ public class PautaService implements PautaServiceImp<Pauta> {
 
 	@Override
 	public ResponseEntity<List<Pauta>> getList() {
-		List<Pauta> listaPauta = dao.findAll();
+		List<Pauta> listaPauta = dao.findAllByOrderByDataDesc();
 		if (listaPauta.isEmpty()) {
 			throw new ObjectNotFoundException("A lista de Pauta esta vazia ");
 		}

@@ -11,5 +11,7 @@ import com.zends.condominio.pauta.domains.Pauta;
 @Repository
 public interface PautaRepository extends JpaRepository< Pauta, Long > {
 
-	public List<Pauta> findByDataBetween(LocalDate dataInicio, LocalDate dataFim);		
+	public List<Pauta> findByDataBetweenOrderByIdDesc(LocalDate dataInicio, LocalDate dataFim);
+
+	public List<Pauta> findAllByOrderByDataDesc();
 }
