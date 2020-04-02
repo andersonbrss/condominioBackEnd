@@ -1,8 +1,7 @@
 package com.zends.condominio.pauta.domains;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,7 +31,7 @@ public class Pauta implements Serializable {
 
 	@NotNull(message = "O campo data deve ser informado")
 	@Column
-	private Date data;
+	private LocalDate data;
 
 	public Long getId() {
 		return id;
@@ -58,11 +57,11 @@ public class Pauta implements Serializable {
 		this.assunto = assunto;
 	}
 
-	public Date getData() {
+	public LocalDate getData() {
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(LocalDate data) {
 		this.data = data;
 	}
 

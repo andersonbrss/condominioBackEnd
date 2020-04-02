@@ -15,6 +15,6 @@ public interface AbstractService< T > {
 	ResponseEntity< ? > update( T obj );
 	
 	ResponseEntity< String > delete( Long idObj );
-	
+
 	//ResponseEntity< Void > delete( Long idObj );
 }

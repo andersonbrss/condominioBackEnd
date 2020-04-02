@@ -1,5 +1,6 @@
 package com.zends.condominio.pauta.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,12 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.zends.condominio.comum.exception.DataException;
 import com.zends.condominio.comum.exception.ObjectNotFoundException;
-import com.zends.condominio.comum.service.AbstractService;
 import com.zends.condominio.pauta.domains.Pauta;
 import com.zends.condominio.pauta.repository.PautaRepository;
 
 @Service
-public class PautaService implements AbstractService<Pauta> {
+public class PautaService implements PautaServiceImp<Pauta>  {
 
 	@Autowired
 	private PautaRepository dao;
@@ -29,6 +29,24 @@ public class PautaService implements AbstractService<Pauta> {
 					+ " " + Pauta.class.getName());
 		}
 		return new ResponseEntity<Pauta>(pauta.get(), HttpStatus.OK);
+	}
+	@Override
+	@Transactional
+	public ResponseEntity<List<Pauta>> buscarPautaData(LocalDate dataInicio, LocalDate dataFim){
+					
+		if(dataInicio.isAfter(dataFim)) {
+			throw new ObjectNotFoundException("A data inicio nao pode ser maior que a data fim");
+			
+		} else if(dataFim.isBefore(dataInicio)) {
+			throw new ObjectNotFoundException("A data fim nao pode ser menor que a data inicio");
+		}
+		
+		List<Pauta> listaPauta = dao.buscaPorData(dataInicio, dataFim);
+		if (listaPauta.isEmpty()) {
+			throw new ObjectNotFoundException("Nao foi encontrado nenhum registro com as data informadas");
+		}		
+		
+		return new ResponseEntity<List<Pauta>>(listaPauta, HttpStatus.OK);		
 	}
 
 	@Override
@@ -71,7 +89,7 @@ public class PautaService implements AbstractService<Pauta> {
 		getObj(idDominio);
 		dao.deleteById(idDominio);
 		return ResponseEntity.noContent().build();
-
 	}
+	
 
 }
