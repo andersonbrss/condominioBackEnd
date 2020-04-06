@@ -27,7 +27,7 @@ public class Pauta implements Serializable {
 	@NotNull(message = "O campo assuntos deve ser informado")
 	@Size(min = 5, max = 250, message = "O campo deve ter no minimo 5 caracteres e no maximo 250 caracteres")
 	@Column(length = 250)
-	private String assunto;
+	private String assuntos;
 
 	@NotNull(message = "O campo data deve ser informado")
 	@Column
@@ -49,12 +49,12 @@ public class Pauta implements Serializable {
 		this.local = local;
 	}
 
-	public String getAssunto() {
-		return assunto;
+	public String getAssuntos() {
+		return assuntos;
 	}
 
-	public void setAssunto(String assunto) {
-		this.assunto = assunto;
+	public void setAssuntos(String assuntos) {
+		this.assuntos = assuntos;
 	}
 
 	public LocalDate getData() {
@@ -64,5 +64,5 @@ public class Pauta implements Serializable {
 	public void setData(LocalDate data) {
 		this.data = data;
 	}
-
+	
 }

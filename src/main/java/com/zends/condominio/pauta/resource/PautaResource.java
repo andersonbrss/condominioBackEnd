@@ -30,7 +30,7 @@ public class PautaResource {
 
 	@GetMapping
 	private ResponseEntity<List<Pauta>> getList() {
-		Log.info("Realiza a busca de todas as Pautas");		
+		Log.info("Realiza a busca de todas as Pautas");
 		return service.getList();
 	}
 
@@ -39,14 +39,14 @@ public class PautaResource {
 		Log.info("Realiza a busca de uma Pauta recebida via ID");
 		return service.getObj(idDominio);
 	}
-	
+
 	@GetMapping("/{dataInicio}/{dataFim}")
 	private ResponseEntity<?> buscaPautaData(
 			@PathVariable(value = "dataInicio") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dataInicio,
-			@PathVariable(value = "dataFim")   @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dataFim){
-		return service.buscarPautaData(dataInicio, dataFim);		
+			@PathVariable(value = "dataFim") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dataFim) {
+		return service.buscarPautaData(dataInicio, dataFim);
 	}
-	
+
 	@PostMapping
 	private ResponseEntity<?> save(@RequestBody Pauta pauta) {
 		Log.info("Realiza o cadastro de uma nova Pauta");
