@@ -31,6 +31,7 @@ public class ComunicadoService implements ComunicadoServiceImp<Comunicado> {
 		if (!comunicado.isPresent()) {
 			throw new ObjectNotFoundException(messageSource.getMessage("erro.consulta", null, LocaleContextHolder.getLocale()));
 		}
+				
 		return new ResponseEntity<Comunicado>(comunicado.get(), HttpStatus.OK);
 	}
 

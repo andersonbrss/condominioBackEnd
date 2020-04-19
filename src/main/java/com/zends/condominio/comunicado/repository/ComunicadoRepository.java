@@ -15,4 +15,5 @@ public List<Comunicado> findAllByOrderByDataDesc();
 
 public List<Comunicado> findByDataBetweenOrderByIdDesc(LocalDateTime dataInicio, LocalDateTime dataFim);
 
+
 }

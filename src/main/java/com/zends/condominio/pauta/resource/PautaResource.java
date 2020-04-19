@@ -61,7 +61,7 @@ public class PautaResource {
 
 	@DeleteMapping("/{id}")
 	private ResponseEntity<String> delete(@PathVariable("id") Long idPauta) {
-		Log.info("Realiza a exclusao de uma nova Pauta");
+ 
 		return service.delete(idPauta);
 	}
 
