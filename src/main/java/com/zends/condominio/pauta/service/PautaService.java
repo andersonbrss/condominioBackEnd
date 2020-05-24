@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.zends.condominio.comum.exception.ObjectNotFoundException;
+import com.zends.condominio.comum.uteis.Log;
 import com.zends.condominio.pauta.domains.Pauta;
 import com.zends.condominio.pauta.repository.PautaRepository;
 
@@ -59,6 +60,24 @@ public class PautaService implements PautaServiceImp<Pauta> {
 		}
 		return new ResponseEntity<List<Pauta>>(listaPauta, HttpStatus.OK);
 	}
+
+	
+	@Override
+	public ResponseEntity<List<Pauta>> listaPautaVinculoComunicado(LocalDate dataInicio, LocalDate dataFim) {
+		if (dataInicio.isAfter(dataFim)) {
+			throw new ObjectNotFoundException(messageSource.getMessage("data.inicio", null, LocaleContextHolder.getLocale()));
+
+		} else if (dataFim.isBefore(dataInicio)) {
+			throw new ObjectNotFoundException(messageSource.getMessage("data.fim", null, LocaleContextHolder.getLocale()));
+		}
+		List<Pauta> listaPauta = dao.findListaPautaVinculoComunicado(dataInicio, dataFim);
+		if (listaPauta.isEmpty()) {
+				throw new ObjectNotFoundException(String
+					.format(messageSource.getMessage("lista.pauta.vinculo.comunicado", null, LocaleContextHolder.getLocale())));
+		}
+
+		return new ResponseEntity<List<Pauta>>(listaPauta, HttpStatus.OK);
+	}
 	
 	@Override
 	@Transactional
@@ -89,8 +108,16 @@ public class PautaService implements PautaServiceImp<Pauta> {
 	@Transactional
 	public ResponseEntity<String> delete(Long idDominio) {
 		getObj(idDominio);
+		
+		Pauta pauta = dao.findPautaVinculoComunicado(idDominio);
+		
+		if (pauta != null) {
+			throw new ObjectNotFoundException(messageSource.getMessage("pauta.comunicado", null, LocaleContextHolder.getLocale()));
+		}
+
 		dao.deleteById(idDominio);
 		return ResponseEntity.noContent().build();
 	}
+
 
 }

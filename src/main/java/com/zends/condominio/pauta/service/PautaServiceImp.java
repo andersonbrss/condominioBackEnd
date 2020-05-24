@@ -8,4 +8,6 @@ import com.zends.condominio.comum.service.AbstractService;
 
 public interface PautaServiceImp<T> extends AbstractService<T>{
 	ResponseEntity<?> buscarPautaData(LocalDate dataInicio, LocalDate dataFim);
+	
+	ResponseEntity<?> listaPautaVinculoComunicado(LocalDate dataInicio, LocalDate dataFim);
 }

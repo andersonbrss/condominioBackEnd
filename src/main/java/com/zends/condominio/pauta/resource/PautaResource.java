@@ -39,6 +39,14 @@ public class PautaResource {
 		Log.info("Realiza a busca de uma Pauta recebida via ID");
 		return service.getObj(idDominio);
 	}
+	
+	@GetMapping("/vinculoComunicado/{dataInicio}/{dataFim}")
+	private ResponseEntity<?> buscaPautaVinculoComunicado(
+			@PathVariable(value = "dataInicio") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dataInicio,
+			@PathVariable(value = "dataFim") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dataFim){
+		Log.info("Realiza pesquisa de pautas para serem vinculadas com comunicado");
+		return service.listaPautaVinculoComunicado(dataInicio, dataFim);
+	}
 
 	@GetMapping("/{dataInicio}/{dataFim}")
 	private ResponseEntity<?> buscaPautaData(
