@@ -39,6 +39,7 @@ public class FuncionarioResource {
 	}
 	
 	
+	
 	@GetMapping("/{id}")
 	private ResponseEntity<?> getFuncionario(@PathVariable("id") Long IdDominio){
 		Log.info("buca Funcinario ID");
