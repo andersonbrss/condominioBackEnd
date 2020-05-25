@@ -3,7 +3,6 @@ package com.zends.condominio.comunicado.domain;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -38,7 +37,7 @@ public class Comunicado implements Serializable {
 	@Size(min = 5, max = 100, message = "O campo deve ter no minimo 5 caracteres e no maximo 100 caracteres")
 	private String descricao;
 
-	@OneToOne(orphanRemoval = false)
+	@OneToOne
 	@JoinColumn(name = "pauta_id")
 	private Pauta pautaAssuntos;
 	

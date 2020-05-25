@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.zends.condominio.comum.exception.ObjectNotFoundException;
-import com.zends.condominio.comum.uteis.Log;
 import com.zends.condominio.pauta.domains.Pauta;
 import com.zends.condominio.pauta.repository.PautaRepository;
 

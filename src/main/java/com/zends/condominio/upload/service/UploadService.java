@@ -1,6 +1,5 @@
 package com.zends.condominio.upload.service;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
@@ -16,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.zends.condominio.comum.exception.ObjectNotFoundException;
 import com.zends.condominio.comum.service.AbstractService;
-import com.zends.condominio.comum.uteis.Log;
 import com.zends.condominio.upload.domain.Upload;
 import com.zends.condominio.upload.repository.UploadRepository;
 
