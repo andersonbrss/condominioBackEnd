@@ -17,6 +17,7 @@ public class Pauta implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "pauta_id")	
 	private Long id;
 
 	@Column(length = 100)

@@ -3,17 +3,16 @@ package com.zends.condominio.comunicado.domain;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import org.springframework.lang.Nullable;
 
 import com.zends.condominio.pauta.domains.Pauta;
 
@@ -39,13 +38,12 @@ public class Comunicado implements Serializable {
 	@Size(min = 5, max = 100, message = "O campo deve ter no minimo 5 caracteres e no maximo 100 caracteres")
 	private String descricao;
 
-	@OneToOne()
-	@Nullable
+	@OneToOne(orphanRemoval = false)
+	@JoinColumn(name = "pauta_id")
 	private Pauta pautaAssuntos;
-
-
+	
 	public Pauta getPautaAssuntos() {	
-		return pautaAssuntos;
+		return  pautaAssuntos;
 		
 	}
 
