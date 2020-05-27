@@ -1,8 +1,10 @@
 package com.zends.condominio.ata.resource;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -33,6 +35,13 @@ public class AtaResource {
 	@GetMapping("/{id}")
 	private ResponseEntity<?> buscaAta(@PathVariable("id") Long id){
 		return service.getObj(id);
+	}
+	
+	@GetMapping("/{dataInicio}/{dataFim}")
+	private ResponseEntity<?> buscaAtaData(
+			@PathVariable(value = "dataInicio") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dataInicio,
+			@PathVariable(value = "dataFim") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dataFim) {
+		return service.buscarAtaData(dataInicio, dataFim);
 	}
 	
 	@PostMapping

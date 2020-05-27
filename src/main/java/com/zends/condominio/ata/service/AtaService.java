@@ -1,5 +1,6 @@
 package com.zends.condominio.ata.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -77,6 +78,22 @@ public class AtaService implements AtaServiceImp<Ata> {
 		getObj(idObjeto);
 		dao.deleteById(idObjeto);
 		return ResponseEntity.noContent().build();
+	}
+
+	@Override
+	public ResponseEntity<List<Ata>> buscarAtaData(LocalDate dataInicio, LocalDate dataFim) {
+		if (dataInicio.isAfter(dataFim)) {
+			throw new ObjectNotFoundException(messageSource.getMessage("data.inicio", null, LocaleContextHolder.getLocale()));
+
+		} else if (dataFim.isBefore(dataInicio)) {
+			throw new ObjectNotFoundException(messageSource.getMessage("data.fim", null, LocaleContextHolder.getLocale()));
+		}
+		List<Ata> listaAta = dao.findByDataBetweenOrderByIdDesc(dataInicio, dataFim);
+		if (listaAta.isEmpty()) {
+			throw new ObjectNotFoundException(messageSource.getMessage("registro.data.nao.encontrado", null, LocaleContextHolder.getLocale()));
+		}
+
+		return new ResponseEntity<List<Ata>>(listaAta, HttpStatus.OK);
 	}
 
 
