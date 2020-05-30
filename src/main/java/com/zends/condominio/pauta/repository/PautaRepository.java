@@ -25,4 +25,13 @@ public interface PautaRepository extends JpaRepository< Pauta, Long > {
 	@Query(nativeQuery = true, 
 			   value ="select comunicado.* from pauta right join comunicado on pauta.pauta_id = comunicado.pauta_id where pauta.pauta_id = :idPauta")	
 	public Pauta findPautaVinculoComunicado(@Param("idPauta") Long idPauta);
+	
+	@Query(nativeQuery = true, 
+			   value ="select pauta.* from ata right join pauta on pauta.pauta_id = ata.pauta_id where ata.pauta_id ISNULL and pauta.data between :dataInicio and :dataFim order by pauta.pauta_id desc")
+		public List<Pauta> findListaPautaVinculoAta(@Param("dataInicio") LocalDate dataInicio,
+								   @Param("dataFim")LocalDate dataFim);
+	
+	@Query(nativeQuery = true, 
+			   value ="select ata.* from pauta right join ata on pauta.pauta_id = ata.pauta_id where pauta.pauta_id = :idPauta")	
+	public Pauta findPautaVinculoAta(@Param("idPauta") Long idPauta);
 }
