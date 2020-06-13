@@ -35,6 +35,7 @@ public class AtaService implements AtaServiceImp<Ata> {
 	}
 
 	@Override
+	@Transactional
 	public ResponseEntity<List<Ata>> getList() {
 		List<Ata> listaAta = dao.findAllByOrderByIdDesc();
 		if (listaAta.isEmpty()) {

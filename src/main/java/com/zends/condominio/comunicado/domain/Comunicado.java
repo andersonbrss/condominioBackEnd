@@ -38,7 +38,7 @@ public class Comunicado implements Serializable {
 	private String descricao;
 
 	@OneToOne
-	@JoinColumn(name = "pauta_id")
+	@JoinColumn(name = "pauta_id", unique = true)
 	private Pauta pautaAssuntos;
 	
 	public Pauta getPautaAssuntos() {	

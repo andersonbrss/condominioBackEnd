@@ -11,4 +11,6 @@ public interface PautaServiceImp<T> extends AbstractService<T>{
 	ResponseEntity<?> buscarPautaData(LocalDate dataInicio, LocalDate dataFim);
 	
 	ResponseEntity<?> listaPautaVinculoComunicado(LocalDate dataInicio, LocalDate dataFim);
+	
+	ResponseEntity<?> listaPautaVinculoAta(LocalDate dataInicio, LocalDate dataFim);
 }
