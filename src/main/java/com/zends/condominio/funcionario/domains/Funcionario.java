@@ -33,7 +33,7 @@ public class Funcionario implements Serializable {
 	
 	@Column
 	@NotNull
-	private Number telefone;
+	private Long telefone;
 	
 	@Column
 	@NotNull
@@ -41,11 +41,13 @@ public class Funcionario implements Serializable {
 	
 	@Column
 	@NotNull
-	private Number cpf;
+	private Long cpf;
 	
+
+
 	@Column
 	@NotNull
-	private Number rg;
+	private Long rg;
 	
 	
 	
@@ -55,19 +57,33 @@ public class Funcionario implements Serializable {
 	
 	@Column
 	@NotNull
+	private String rgEmissorEstado;
+	
+	@Column
+	@NotNull
 	private Date rgEmissorData;
 	
 	@Column
 	@NotNull
-	private Number tituloEleitor;
+	private Long tituloEleitor;
 	
 	@Column
 	@NotNull
-	private Number carteiraTrabalhoNo;
+	private Long tituloEleitorZona;
 	
 	@Column
 	@NotNull
-	private Number carteiraTrabalhoSerie;
+	private Long tituloEleitorSecao;
+	
+	
+	
+	@Column
+	@NotNull
+	private Long carteiraTrabalhoNo;
+	
+	@Column
+	@NotNull
+	private Long carteiraTrabalhoSerie;
 	
 	@Column
 	@NotNull
@@ -79,7 +95,13 @@ public class Funcionario implements Serializable {
 	
 	@Column
 	@NotNull
-	private Number pisPasep;
+	private Long pisPasep;
+	
+	
+	@Column
+	@NotNull
+	private Long reservista;
+	
 	
 	@Column
 	@NotNull
@@ -105,7 +127,7 @@ public class Funcionario implements Serializable {
 	
 	@Column
 	@NotNull
-	private Number enderecoNo;
+	private Long enderecoNo;
 	
 	@Column
 	@NotNull
@@ -134,346 +156,262 @@ public class Funcionario implements Serializable {
 	@Column
 	@NotNull
 	private Date dependenteDataNascimento;
-	
-
 
 	public Long getId() {
 		return id;
 	}
 
-
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-
 
 	public String getNome() {
 		return nome;
 	}
 
-
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-	
-	
-	
-	public Number getTelefone() {
+	public Long getTelefone() {
 		return telefone;
 	}
 
-
-
-	public void setTelefone(Number telefone) {
+	public void setTelefone(Long telefone) {
 		this.telefone = telefone;
 	}
-
-
-	
 
 	public String getEmail() {
 		return email;
 	}
 
-
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-
-
-	public Number getCpf() {
+	public Long getCpf() {
 		return cpf;
 	}
 
-
-
-	public void setCpf(Number cpf) {
+	public void setCpf(Long cpf) {
 		this.cpf = cpf;
 	}
 
-	
-	public Number getRg() {
+	public Long getRg() {
 		return rg;
 	}
 
-
-
-	public void setRg(Number rg) {
+	public void setRg(Long rg) {
 		this.rg = rg;
-	}	
-	
-	
+	}
+
 	public String getRgEmissor() {
 		return rgEmissor;
 	}
 
-
-
 	public void setRgEmissor(String rgEmissor) {
 		this.rgEmissor = rgEmissor;
 	}
-
 	
 	
 
-	public Number getTituloEleitor() {
-		return tituloEleitor;
+	public String getRgEmissorEstado() {
+		return rgEmissorEstado;
 	}
 
-
-
-	public void setTituloEleitor(Number tituloEleitor) {
-		this.tituloEleitor = tituloEleitor;
+	public void setRgEmissorEstado(String rgEmissorEstado) {
+		this.rgEmissorEstado = rgEmissorEstado;
 	}
-
-
-
-	public Number getCarteiraTrabalhoNo() {
-		return carteiraTrabalhoNo;
-	}
-
-
-
-	public void setCarteiraTrabalhoNo(Number carteiraTrabalhoNo) {
-		this.carteiraTrabalhoNo = carteiraTrabalhoNo;
-	}
-
-
-
-	public Number getCarteiraTrabalhoSerie() {
-		return carteiraTrabalhoSerie;
-	}
-
-
-
-	public void setCarteiraTrabalhoSerie(Number carteiraTrabalhoSerie) {
-		this.carteiraTrabalhoSerie = carteiraTrabalhoSerie;
-	}
-
-
-
-	public String getCarteiraTrabalhoUf() {
-		return carteiraTrabalhoUf;
-	}
-
-
-
-	public void setCarteiraTrabalhoUf(String carteiraTrabalhoUf) {
-		this.carteiraTrabalhoUf = carteiraTrabalhoUf;
-	}
-
-
-
-	public Date getCarteiraTrabalhoEmissorData() {
-		return carteiraTrabalhoEmissorData;
-	}
-
-
-
-	public void setCarteiraTrabalhoEmissorData(Date carteiraTrabalhoEmissorData) {
-		this.carteiraTrabalhoEmissorData = carteiraTrabalhoEmissorData;
-	}
-
-
-	
-	
-	
-	
-	public Number getPisPasep() {
-		return pisPasep;
-	}
-
-
-
-	public void setPisPasep(Number pisPasep) {
-		this.pisPasep = pisPasep;
-	}
-
-
-
-	public String getEscolaridade() {
-		return escolaridade;
-	}
-
-
-
-	public void setEscolaridade(String escolaridade) {
-		this.escolaridade = escolaridade;
-	}
-
-
-
-	public String getSexo() {
-		return sexo;
-	}
-
-
-
-	public void setSexo(String sexo) {
-		this.sexo = sexo;
-	}
-
-
-
-	public String getEstadoCivil() {
-		return estadoCivil;
-	}
-
-
-
-	public void setEstadoCivil(String estadoCivil) {
-		this.estadoCivil = estadoCivil;
-	}
-
-
 
 	public Date getRgEmissorData() {
 		return rgEmissorData;
 	}
 
-
-
 	public void setRgEmissorData(Date rgEmissorData) {
 		this.rgEmissorData = rgEmissorData;
 	}
 
+	public Long getTituloEleitor() {
+		return tituloEleitor;
+	}
 
+	public void setTituloEleitor(Long tituloEleitor) {
+		this.tituloEleitor = tituloEleitor;
+	}
 	
 	
+
+	public Long getTituloEleitorZona() {
+		return tituloEleitorZona;
+	}
+
+	public void setTituloEleitorZona(Long tituloEleitorZona) {
+		this.tituloEleitorZona = tituloEleitorZona;
+	}
+
+	public Long getTituloEleitorSecao() {
+		return tituloEleitorSecao;
+	}
+
+	public void setTituloEleitorSecao(Long tituloEleitorSecao) {
+		this.tituloEleitorSecao = tituloEleitorSecao;
+	}
+
+	public Long getCarteiraTrabalhoNo() {
+		return carteiraTrabalhoNo;
+	}
+
+	public void setCarteiraTrabalhoNo(Long carteiraTrabalhoNo) {
+		this.carteiraTrabalhoNo = carteiraTrabalhoNo;
+	}
+
+	public Long getCarteiraTrabalhoSerie() {
+		return carteiraTrabalhoSerie;
+	}
+
+	public void setCarteiraTrabalhoSerie(Long carteiraTrabalhoSerie) {
+		this.carteiraTrabalhoSerie = carteiraTrabalhoSerie;
+	}
+
+	public String getCarteiraTrabalhoUf() {
+		return carteiraTrabalhoUf;
+	}
+
+	public void setCarteiraTrabalhoUf(String carteiraTrabalhoUf) {
+		this.carteiraTrabalhoUf = carteiraTrabalhoUf;
+	}
+
+	public Date getCarteiraTrabalhoEmissorData() {
+		return carteiraTrabalhoEmissorData;
+	}
+
+	public void setCarteiraTrabalhoEmissorData(Date carteiraTrabalhoEmissorData) {
+		this.carteiraTrabalhoEmissorData = carteiraTrabalhoEmissorData;
+	}
+
+	public Long getPisPasep() {
+		return pisPasep;
+	}
+
+	public void setPisPasep(Long pisPasep) {
+		this.pisPasep = pisPasep;
+	}
 	
-	
+
+	public Long getReservista() {
+		return reservista;
+	}
+
+	public void setReservista(Long reservista) {
+		this.reservista = reservista;
+	}
+
+	public String getEscolaridade() {
+		return escolaridade;
+	}
+
+	public void setEscolaridade(String escolaridade) {
+		this.escolaridade = escolaridade;
+	}
+
+	public String getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+
+	public String getEstadoCivil() {
+		return estadoCivil;
+	}
+
+	public void setEstadoCivil(String estadoCivil) {
+		this.estadoCivil = estadoCivil;
+	}
 
 	public Date getData() {
 		return data;
 	}
 
-
-
 	public void setData(Date data) {
 		this.data = data;
 	}
-
-
 
 	public String getEndereco() {
 		return endereco;
 	}
 
-
-
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
 
-
-
-	public Number getEnderecoNo() {
+	public Long getEnderecoNo() {
 		return enderecoNo;
 	}
 
-
-
-	public void setEnderecoNo(Number enderecoNo) {
+	public void setEnderecoNo(Long enderecoNo) {
 		this.enderecoNo = enderecoNo;
 	}
-
-
 
 	public String getEnderecoCep() {
 		return enderecoCep;
 	}
 
-
-
 	public void setEnderecoCep(String enderecoCep) {
 		this.enderecoCep = enderecoCep;
 	}
-
-
 
 	public String getEnderecoBairro() {
 		return enderecoBairro;
 	}
 
-
-
 	public void setEnderecoBairro(String enderecoBairro) {
 		this.enderecoBairro = enderecoBairro;
 	}
-
-
 
 	public String getEnderecoCidade() {
 		return enderecoCidade;
 	}
 
-
-
 	public void setEnderecoCidade(String enderecoCidade) {
 		this.enderecoCidade = enderecoCidade;
 	}
-
-
 
 	public String getEnderecoEstado() {
 		return enderecoEstado;
 	}
 
-
-
 	public void setEnderecoEstado(String enderecoEstado) {
 		this.enderecoEstado = enderecoEstado;
 	}
-
-
 
 	public String getDependente() {
 		return dependente;
 	}
 
-
-
 	public void setDependente(String dependente) {
 		this.dependente = dependente;
 	}
-
-
 
 	public String getParentesco() {
 		return parentesco;
 	}
 
-
-
 	public void setParentesco(String parentesco) {
 		this.parentesco = parentesco;
 	}
-
-
 
 	public Date getDependenteDataNascimento() {
 		return dependenteDataNascimento;
 	}
 
-
-
 	public void setDependenteDataNascimento(Date dependenteDataNascimento) {
 		this.dependenteDataNascimento = dependenteDataNascimento;
 	}
-
-
-
-
-
 	
-	
-	
+
+
 	
 }
 
